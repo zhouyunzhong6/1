@@ -1,0 +1,81 @@
+﻿编号,主题,来源,链接,日期,证据等级,用途/口径说明
+S01,宇树招股书财务与出货,华尔街见闻·IPO 见闻,https://wallstreetcn.com/articles/3768005,2026-03,B,"2025 营收 17.08 亿元、毛利率、人形出货 >5,500 台（媒体解读招股书）"
+S02,宇树发行与上市,同花顺财经,https://stock.10jqka.com.cn/20260818/c679025061.shtml,2026-08-18,B,发行价 150.80 元、发行市盈率 219 倍、募资约 61 亿元
+S03,宇树发行定价,盖世汽车,https://autonews.gasgoo.com/articles/market-industry/unitree-ipo-priced-at-15080-yuan-per-share-corresponding-to-issuance-market-cap-of-nearly-61-billion-yuan-2085662758073761793,2026-08,B,发行市值 609.93 亿元
+S04,宇树首日表现,SCMP,https://scmp.com/tech/tech-trends/article/3364499/unitree-robotics-surges-629-us66-billion-valuation-shanghai-share-debut,2026-08-19,B,开盘 +629%
+S05,宇树股价回撤与泡沫担忧,SCMP,https://scmp.com/tech/tech-trends/article/3365459/unitrees-stock-slump-ipo-stokes-fears-bubble-chinese-humanoid-robotics,2026-08/09,B,较峰值回撤 48%
+S06,宇树股价跌破 550 元,同花顺财经,https://news.10jqka.com.cn/20260902/c679520153.shtml,2026-09-02,B,较首日高点腰斩；9-18 收盘 514.98 元（另见检索摘录）
+S07,宇树 2026H1 业绩,瑞财经,https://m.rccaijing.com/news-7500438674887865924.html,2026-08,B,营收 11.52 亿元、+48.54%；归母净利 2.74 亿元
+S08,优必选 2025 年报,华尔街见闻,https://wallstreetcn.com/articles/3768895,2026-03,B,"营收 20.01 亿元、毛利率 37.7%、全尺寸人形 8.21 亿元/1,079 台"
+S09,优必选 2026 中期业绩,澎湃新闻,https://m.thepaper.cn/newsDetail_forward_33969262,2026-08-28,B,营收 12.7 亿元、全尺寸 921 台、净亏 3.39 亿元
+S10,优必选 Walker S2 量产与订单,共同网 PR Wire（公司新闻稿）,https://kyodonewsprwire.jp/index.php/release/202511179261,2025-11,C,订单超 8 亿元（公司口径）
+S11,优必选九江数采中心中标,IT 之家,https://www.ithome.com/0/900/878.htm,2025-11-28,B,1.43 亿元数据采集与训练中心项目
+S12,优必选股价,同花顺财经,https://stock.10jqka.com.cn/20261012/c680583714.shtml,2026-10-12,B,68.10 港元；与厦门建发 1 万台合作目标
+S13,IDC 2025 全球人形出货,界面新闻（英文）,https://en.jiemian.com/article/13925066.html,2026-01,B,约 1.8 万台、约 4.4 亿美元
+S14,Counterpoint 2026H1 出货,Counterpoint Research,https://counterpointresearch.com/cn/insights/humanoid-robot-shipments-up-300-forbes,2026-08,B,全球 >2.2 万台；厂商份额
+S15,Counterpoint 排名（智元新闻稿）,智元官网,https://agibot.com/article/231/detail/89.html,2026-08,C,智元第一（公司转引）
+S16,智元新一轮与港股暂缓,36 氪（转引《财经》）,https://eu.36kr.com/zh/p/4025612762763138,2026-10,C,估值约 500 亿元、120 日规则
+S17,智元营收口径,界面新闻,https://m.jiemian.com/article/13845721.html,2026,C,2023–2025 营收、2026 年数万台目标
+S18,智元收购上纬新材,界面新闻,https://www.jiemian.com/article/13008894.html,2025-07,B,拟收购 63.62% 股份
+S19,标委会与产量数据,第一财经,https://www.yicai.com/news/103016803.html,2026-07,B,2025 产量约 2 万台、2026H1 超 4 万台、全年预计超 10 万台
+S20,标准体系与实景实训专项行动,新华网,https://www.news.cn/tech/20260612/a069b3a9948b4e0aaaa94cf3d618e545/c.html,2026-06-12,B,万台级规模落地目标
+S21,发改委'泡沫风险'表态,国家发展改革委,https://www.ndrc.gov.cn/xwdt/wszb/11yxwfbh1/wzsl/202511/t20251127_1401983.html,2025-11-27,A,150 余家整机企业、同质化风险
+S22,国家创业投资引导基金,中国政府网,https://www.gov.cn/zhengce/202512/content_7052828.htm,2025-12-26,A,"中央财政出资 1,000 亿元、目标万亿规模"
+S23,2026H1 融资 935 亿元（IT 桔子）,虎嗅,https://www.huxiu.com/article/4872074.html,2026-07,B,322 笔、同比金额约 5 倍
+S24,"2026 前三季度融资 2,896 亿元（上奇）",搜狐,https://www.sohu.com/a/1088098885_121325195,2026-10-15,C,含单笔约 771 亿元异常值
+S25,2025 融资（投中）,投中网,https://m.chinaventure.com.cn/news/80-20251218-389389.html,2025-12,B,298 起、329 亿元
+S26,交付能力成估值锚点,新华网,https://www.news.cn/tech/20260513/5cba0af26a5a4bfa847cc024100a6278/c.html,2026-05-13,B,资本逻辑迁移
+S27,PitchBook 人形融资,PitchBook,https://pitchbook.com/news/articles/apptronik-raises-520m-as-vc-funding-for-humanoid-robotics-explodes-300,2026-02,B,2025 年 61 亿美元/139 笔
+S28,Crunchbase 机器人融资,Crunchbase News,https://news.crunchbase.com/robotics/ai-funding-high-figure-raise-data/,2026,B,2025 年 138 亿美元
+S29,特斯拉 2026Q3 财报会,The Motley Fool 文字稿,https://www.fool.com/earnings/call-transcripts/2026/10/22/tesla-tsla-q3-2026-earnings-call-transcript/,2026-10-22,B,弗里蒙特产线、交付时间、AI5
+S30,特斯拉 8-K 财报附件,SEC,https://www.sec.gov/Archives/edgar/data/0001318605/000162828026049213/exhibit991.htm,2026-10,A,官方财报材料
+S31,Optimus V3 推迟,Not a Tesla App,https://notateslaapp.com/news/3884/tesla-delays-optimus-gen-3-unveil-for-finishing-touches,2026-03-31,C,发布推迟
+S32,Figure C 轮 390 亿美元,Bloomberg Law,https://news.bloomberglaw.com/artificial-intelligence/robotics-startup-figure-ai-valued-at-39-billion-in-new-funding,2025-09,B,投后估值
+S33,宝马 Spartanburg 试点复盘,Humanoids Daily,https://www.humanoidsdaily.com/features/bmw-reflections-why-the-spartanburg-pilot-succeeded-and-why-figure-02-had-to-die,2026,C,"1,250 小时、9 万+零件、84 秒节拍"
+S34,"Figure 第 1,000 台 Figure 03",Humanoids Daily,https://www.humanoidsdaily.com/news/a-golden-milestone-figure-manufactures-its-1-000th-figure-03-humanoid,2026-07,C,公司宣布
+S35,Agility SPAC 财务,GeekWire,https://www.geekwire.com/2026/digit-maker-agility-robotics-to-go-public-in-2-5b-deal-heres-what-the-filings-say-about-its-finances/,2026-06,B,2025 营收 180 万美元、经营亏损 1.4 亿美元
+S36,GXO：45 次人形试点未达 ROI,BERI,https://www.beri.net/article/gxo-agility-digit-humanoid-expansion-statesville-lebanon-raas-no-roi-yet-45-pilots-warehouse-automation,2026-10,B,"GXO CEO 财报会表态；RaaS 示意价 8,500 美元/月（SEC 文件）"
+S37,GXO 2026 年 2 万台机器人无人形,A3 Automate,https://www.automate.org/robotics/industry-insights/gxo-plans-20-000-robots-in-2026-none-of-them-will-be-humanoids/anc,2026,B,客户侧形态选择
+S38,Apptronik 9.35 亿美元 A 轮,TechCrunch,https://techcrunch.com/2026/02/11/humanoid-robot-startup-apptronik-has-now-raised-935m-at-a-5b-valuation/,2026-02-11,B,投后约 53 亿美元
+S39,Apptronik 新闻稿,Apptronik,https://apptronik.com/news-collection/apptronik-closes-over-935-million-series-a,2026-02-11,A,融资金额
+S40,量产版 Atlas,Boston Dynamics,https://bostondynamics.com/blog/boston-dynamics-unveils-new-atlas-robot-to-revolutionize-industry/,2026-01,A,2026 交付锁定现代与 DeepMind
+S41,现代机器人战略,Automotive World,https://www.automotiveworld.com/news/hyundai-unveils-ai-robotics-strategy-at-ces-2026/,2026-01,B,2.5 万台以上部署、3 万台/年产能
+S42,1X NEO 价格与交付,eWeek,https://www.eweek.com/news/1x-neo-humanoid-home-robot-2026/,2026,C,2 万美元/499 美元每月
+S43,1X 工厂,eWeek,https://www.eweek.com/news/news-1x-california-factory-neo-humanoid-robot/,2026-04/05,C,首年目标 1 万台
+S44,软银洽购 1X,Startup Researcher,https://www.startupresearcher.com/news/softbank-in-talks-to-buy-majority-stake-in-1x-technologies,2026-08,C,约 60 亿美元
+S45,PI 洽谈 110 亿美元估值,Bloomberg Government,https://news.bgov.com/artificial-intelligence/ai-robotics-lab-in-talks-to-nab-1-billion-at-11-billion-value,2026-03,B,洽谈中，未见交割
+S46,Skild C 轮,Robotics Press,https://www.robotics.press/news/skild-ai-series-c-funding-1-4-billion/,2026-01,C,14 亿美元@140 亿美元+
+S47,Skild 1 亿美元运行率,AI Weekly（转引彭博）,https://aiweekly.co/alerts/skild-ai-hits-100m-revenue-run-rate-10-months-after-first-deployment-grows-to,2026,C,运行率口径
+S48,Generalist 20 亿美元估值,SiliconANGLE,https://siliconangle.com/2026/06/04/generalist-ai-raises-400m-2b-valuation-build-general-intelligence-real-world/,2026-06-04,B,4 亿美元
+S49,Generalist 30 亿美元估值,TechCrunch,https://techcrunch.com/2026/08/25/robotics-startup-generalist-reaches-3b-valuation-sources-say/,2026-08-25,B,约 2 亿美元追加
+S50,它石 4.55 亿美元 Pre-A,科技日报,https://www.stdaily.com/web/gdxw/2026-04/16/content_503350.html,2026-04-16,B,国内单轮纪录
+S51,星海图、千寻融资,36 氪,https://www.36kr.com/p/3874254534710276,2026,C,投后 200 亿元级
+S52,银河通用融资与质疑,36 氪,https://eu.36kr.com/zh/p/4003795908908679,2026-09,C,股东客户重合
+S53,云深处、乐聚 IPO,同花顺财经,https://news.10jqka.com.cn/20260526/c676982362.shtml,2026-05-26,B,营收、估值、受理时间
+S54,云深处 IPO,财新 Global,https://www.caixinglobal.com/2026-05-19/robot-dog-maker-deep-robotics-seeks-370-million-shanghai-ipo-102445604.html,2026-05-19,B,募资规模
+S55,证监会窗口指导,Khaleej Times（转引 The Information）,https://www.khaleejtimes.com/business/china-curbs-humanoid-ipos-after-unitrees-volatile-debut-the-information-reports,2026-09,B,经常性收入、亏损收窄或真正创新
+S56,订单水分调查,蓝鲸新闻,https://www.lanjinger.com/d/1789482175583483970,2026,C,三类注水订单、中标结构
+S57,订单真实性,虎嗅,https://www.huxiu.com/article/4885231.html,2026,C,'80% 订单不算真正商业化订单'为作者判断
+S58,政府招采结构,虎嗅,https://www.huxiu.com/article/4882344.html,2026,C,302 份招标书分析
+S59,租赁价格下跌,杭州网,https://hznews.hangzhou.com.cn/jingji/content/2026-10/14/content_9337309.htm,2026-10-14,B,日租从万元级降至千元级
+S60,数据采集补贴与数据缺口,中国金融信息网,https://www.cnfin.com/yw-lb/detail/20260924/4474924_1.html,2026-09-24,C,贵州补贴标准、合规数据 50 万小时
+S61,灵巧手出货与价格,界面新闻,https://m.jiemian.com/article/15102794.html,2026,C,GGII 1.92 万只、价格区间
+S62,绿的谐波业绩,投中网,https://m.chinaventure.com.cn/news/114-20260903-393080.html,2026-09-03,B,2025 年报与 2026H1
+S63,丝杠与 BOM 结构,财联社,https://www.cls.cn/detail/2393045,2026,C,国产化率、良率、三大件占比
+S64,摩根士丹利 BOM 估算,SCMP,https://www.scmp.com/tech/article/3337151/china-packs-patent-punch-race-build-humanoid-robots,2025,B,Optimus Gen2 中国供应链 4.6 万美元 vs 非中国 13.1 万美元
+S65,IFR World Robotics 2026,CGTN,https://news.cgtn.com/news/2026-09-24/China-remains-world-s-largest-industrial-robot-market-report-1QHHXCQHdrq/p.html,2026-09-24,B,2025 年中国安装 35.4 万台、占全球 59%
+S66,IFR World Robotics 2025（中国）,IFR,https://ifr.org/downloads/press_docs/2025-09-25-IFR_press_release_China_in_English.pdf,2025-09-25,A,2024 年中国安装 29.5 万台、存量 202.7 万台
+S67,统计局 2025 年平均工资,国家统计局,https://www.stats.gov.cn/xxgk/sjfb/zxfb2020/202605/t20260515_1963707.html,2026-05-15,A,"非私营 129,441 元、私营 71,590 元、规模以上 106,080 元"
+S68,高盛人形市场预测,Goldman Sachs,https://www.goldmansachs.com/intelligence/pages/the-global-market-for-robots-could-reach-38-billion-by-2035.html,2024-02,A,2035 年 380 亿美元
+S69,高盛上调 2035 出货预测,Humanoid Guide,https://humanoid.guide/goldman-raises-2035-humanoid-robot-forecast-to-6-5-million/,2026-09,C,约 650 万台
+S70,Jetson Thor 价格,DatacenterDynamics,https://www.datacenterdynamics.com/en/news/nvidia-launches-jetson-thor-compute-modules-for-humanoid-robots/,2025-08,B,"3,499 美元开发套件、2,999 美元千片模组"
+S71,宇树 R1 价格,Interesting Engineering,https://interestingengineering.com/innovation/unitree-launches-cheapest-humanoid-robot-r1,2025-07,B,3.99 万元起（后报道降至 2.99 万元起）
+S72,美国参议院采购禁令法案,FDD,https://www.fdd.org/analysis/2026/03/27/as-chinese-robotics-industry-surges-senate-considers-limited-federal-procurement-ban/,2026-03-27,B,American Security Robotics Act
+S73,GUARD Act,Washington Times,https://m.washingtontimes.com/news/2026/jun/4/lawmakers-propose-bill-block-sale-robots-built-china/,2026-06-04,B,国家安全审查与潜在进口禁令
+S74,FCC 进口限制（报道）,Business Standard,https://www.business-standard.com/world-news/us-bans-foreign-made-humanoid-robots-targeting-china-on-security-grounds-126072900521_1.html,2026-07,C,单一来源，待官方核实
+S75,达闼破产清算（报道）,36 氪,https://eu.36kr.com/zh/p/4033766049698947,2026-10,C,单一来源
+S76,达闼欠薪,界面新闻,https://m.jiemian.com/article/12650544.html,2025-04,B,欠薪裁员与公司回应
+S77,极智嘉 2025 业绩,科技日报,https://www.stdaily.com/web/gdxw/2026-04/08/content_499039.html,2026-04-08,B,营收 31.71 亿元、经调整净利润转正
+S78,港股机器人排队,财联社,https://www.cls.cn/detail/2442498,2026-08,C,46 家排队、年内 5 家上市
+S79,IT 桔子 2025 全年,36 氪,https://www.36kr.com/p/3680181698113415,2025-12,B,305+ 起
+S80,原技术报告（本仓库）,本仓库 report/ 目录,../report/,2026-10-30,C,技术路线、模型与公司技术细节的线索库，事实以本报告复核为准
