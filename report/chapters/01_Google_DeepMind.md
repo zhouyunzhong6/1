@@ -299,6 +299,7 @@ ER 2 的两个新能力，标志着 DeepMind 把"多智能体编排"作为下一
 ### 4.6 伙伴生态：Apptronik 与 Boston Dynamics
 
 - **Apptronik**：自 2024 年底与 DeepMind 结成战略合作，Apollo/Apollo 2 是 Gemini Robotics 的"官方人形"；Apptronik 自身专注硬件与量产，大脑主要依赖 Gemini。
+- **Agile Robots**：据报道，2026 年 3 月这家德国工业机器人公司宣布在其工业平台中集成 Gemini Robotics 的 VLA 模型——成为继 Apptronik、Boston Dynamics 之后又一家深度接入 Gemini Robotics 的硬件厂商；在 Gemini Robotics 2 发布时，VLA 与 On-Device 模型仍仅向 Apptronik、Boston Dynamics、Franka、Agile Robots 等合作伙伴开放（有单一来源称 ER 2 基于 Gemini 3.5 架构，未经官方确认）。
 - **Boston Dynamics**：2026 年 1 月 5 日 CES 上，在现代汽车集团发布会中宣布与 DeepMind 建立 AI 合作，**新一代量产版电动 Atlas 将以 Gemini Robotics 为大脑研究对象**，首批量产 Atlas 交付给现代汽车与 Google DeepMind，计划在现代汽车工厂测试。这是一次"回归"——Google 在 2013 年收购、2017 年把 Boston Dynamics 卖给软银。对 BD 来说，这意味着它在 TRI 的 LBM 合作之外，又接入了全球最强的通用推理大脑。
 
 ---

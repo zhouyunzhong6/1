@@ -113,10 +113,16 @@ InternVLA-M1 强调"理解空间"，A1 则进一步引入"**预见（foresight�
 | **视觉预见生成专家** | 生成未来视觉状态（"想象"动作执行后的画面）|
 | **动作专家** | 输出机器人动作 |
 
-三个专家通过**统一的掩码自注意力**交互——理解为生成提供语义，生成为动作提供"目标画面"，动作专家同时参考理解与预见。
+三个专家通过**统一的掩码自注意力**交互，信息按"**理解 → 生成 → 动作**"的固定顺序流动（由累积式分段掩码保证）——理解为生成提供语义，生成为动作提供"预见的未来画面"，动作专家同时参考两者：
+- **生成专家**使用基于 VAE 的视觉分词器（Cosmos 系列的连续图像分词器）在潜空间中预测未来画面；
+- **动作专家**以**流匹配**目标生成连续动作。
 
 - 基于 **InternVL3** 与 **Qwen3-VL** 构建，提供 **20 亿与 30 亿参数**两种规模；
-- 预训练数据为合成与真实的混合：**InternData-A1**（合成）与 **AgiBot World**（真实），合计超过 **5.33 亿帧**。
+- 预训练数据为合成与真实的混合：
+  - **InternData-A1**：大规模**仿真合成**数据，超过 **5.33 亿帧**，覆盖 **4 种本体、18 种技能、70 个任务、227 个场景**；
+  - **AgiBot World**：真实世界示范（智元，第 32 章）；
+  - 另外使用了**人类第一视角视频**。
+- **消融**：去掉"视觉预见生成专家"后整体性能下降约 **19.4%**，在动态任务上下降尤为明显——直接证明了"想象未来"对动态操作的价值。
 
 ### 4.3 结果（论文报告，对比 π0.5）
 
@@ -201,4 +207,4 @@ InternUtopia  InternData-A1（操作）      InternVLA-A1/A1.5（理解+生成+�
 - InternVLA-N1：[arXiv 2512.08186](https://arxiv.org/pdf/2512.08186)；[Hugging Face：InternVLA-N1](https://huggingface.co/InternRobotics/InternVLA-N1-System2/blob/main/README.md)
 - [Robotics Center：上海人工智能实验室机构页](https://www.roboticscenter.ai/institutions/models/shanghai-ai-lab)
 
-> **核验说明**：InternVLA-M1 的双系统、230 万空间数据与 LIBERO 成绩来自论文及二手解读（SimplerEnv 提升数字为二手数据）；InternVLA-A1 的三专家 MoT、2B/3B 规模、5.33 亿帧与对比 π0.5 的提升来自论文摘要；A1.5 的数据规模、发布日期与许可证来自项目/目录页；InternVLA-N1 的 7B/2Hz 双系统与 InternData-N1 规模来自论文与 Hugging Face 模型卡；GRUtopia 的规模来自 2024 年论文。
+> **核验说明**：InternVLA-M1 的双系统、230 万空间数据与 LIBERO 成绩来自论文及二手解读（SimplerEnv 提升数字为二手数据）；InternVLA-A1 的三专家 MoT、理解→生成→动作的信息流、Cosmos 式 VAE 分词器、流匹配动作专家、2B/3B 规模、InternData-A1（5.33 亿+ 帧、4 本体、18 技能、70 任务、227 场景）、去掉生成专家 -19.4% 与对比 π0.5 的提升来自 arXiv 论文；A1.5 的数据规模、发布日期与许可证来自项目/目录页；InternVLA-N1 的 7B/2Hz 双系统与 InternData-N1 规模来自论文与 Hugging Face 模型卡；GRUtopia 的规模来自 2024 年论文。

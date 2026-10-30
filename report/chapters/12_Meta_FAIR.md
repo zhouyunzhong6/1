@@ -90,8 +90,12 @@
 **阶段一：无动作的自监督视频预训练**
 - 数据：**超过 100 万小时的互联网视频 + 100 万张图像**，无任何人工标注；
 - 目标：掩码预测——遮住视频的一部分时空块，让模型在**表征空间**中预测被遮住部分的表征；
-- 模型：ViT 编码器，最大约 **10 亿参数级（报道称 V-JEPA 2 整体约 12 亿参数）**；
-- 能力：在动作理解（如 Something-Something v2）、动作预测（EPIC-KITCHENS）、视频问答等任务上达到领先水平。
+- 模型：ViT 编码器（最大为 ViT-g，约 **10 亿参数**；报道称 V-JEPA 2 整体约 12 亿参数）；
+- 能力（论文报告）：
+  - **运动理解**：Something-Something v2 上以注意力探针取得 **77.3** 的 top-1 准确率（擅长细粒度运动信息）；
+  - **动作预测**：EPIC-KITCHENS-100 人类动作预期 **Recall@5 = 39.7**，当时的最优水平；
+  - **视频问答**：与 8B 级语言模型对齐后，PerceptionTest 达到 **84.0**；
+  - 后续的 **V-JEPA 2.1**（arXiv 2603.14482）进一步改进了这些指标（例如 EPIC-KITCHENS Recall@5 约 40.8），并成为 RoboJEPA 的编码器。
 
 **阶段二：动作条件化后训练（V-JEPA 2-AC）**
 - 冻结视频编码器，在其表征空间上训练一个**动作条件化的预测器**："给定当前表征和机器人动作，预测下一时刻的表征"；
@@ -228,4 +232,4 @@ Meta 的路线可以概括为一句话：**"先理解世界，再学会行动；
 - [AI Weekly：Meta FAIR 发布 8B RoboJEPA](https://aiweekly.co/alerts/meta-fair-ships-8b-robojepa-with-multi-embodiment-scaling-laws)
 - LeCun, *A Path Towards Autonomous Machine Intelligence*（2022）
 
-> **核验说明**：Motivo 的 FB-CPR 方法、模型规模与许可证来自论文与 Hugging Face 模型卡；V-JEPA 2 的数据规模、62 小时机器人数据与 65%–80% 成功率来自 Meta 官方与 The Robot Report；RoboJEPA 的数据规模、80 亿参数与缩放定律来自 arXiv 论文（2026 年 10 月发布，独立报道较少）；Reality Labs 人形团队为 2025 年媒体报道，进展未公开。
+> **核验说明**：Motivo 的 FB-CPR 方法、模型规模与许可证来自论文与 Hugging Face 模型卡；V-JEPA 2 的数据规模、62 小时机器人数据与 65%–80% 成功率来自 Meta 官方与 The Robot Report；RoboJEPA 的数据规模、80 亿参数与缩放定律来自 arXiv 论文（2026 年 10 月发布，独立报道较少）；Reality Labs 人形团队为 2025 年媒体报道，进展未公开。补充核验：V-JEPA 2 的 SSv2 77.3、EPIC-KITCHENS-100 Recall@5 39.7、PerceptionTest 84.0（8B 对齐）与 ViT-g 约 10 亿参数编码器来自 arXiv 2506.09985；V-JEPA 2.1 的改进数字来自 arXiv 2603.14482。

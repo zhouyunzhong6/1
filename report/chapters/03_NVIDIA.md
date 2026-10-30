@@ -227,8 +227,12 @@ DreamZero 的方法论可以用一句话概括：**联合生成"未来视频"与
 
 ### 4.3 训练与推理
 
-- **母体**：阿里开源的 Wan2.1 图生视频 14B 模型；
-- **机器人数据**：论文主要使用智元（AgiBot）的大规模真机数据进行后训练，这也说明中国开源数据集（AgiBot World）已成为全球前沿研究的基础资源；
+- **母体**：阿里开源的 **Wan2.1-I2V-14B-480P** 图生视频模型；
+- **结构**：**一个自回归扩散 Transformer**，以**流匹配**同时预测"未来视频 latent"与"动作块"——不另设逆动力学解码器；
+- **时间分辨率**：视频按约 5 FPS 采样，动作在智元平台上为 30Hz、在 DROID（Franka）上为 15Hz；每个块约覆盖 **1.6 秒**（开源仓库中推理使用 24 步动作块）；
+- **机器人数据**：约 **500 小时智元 G1 遥操作数据** + **DROID**（Franka）；另有只在 DROID（约 7.5 万条片段）上训练的 DreamZero-DROID 版本——这也说明中国开源/公开数据（智元）已成为全球前沿研究的基础资源；
+- **对比基线**：π0.5-DROID 与 NVIDIA 内部的 GR00T N1.6-DROID；在智元 G1 的**未见任务**上报告零样本结果；
+- **开源**：预训练、微调与评测代码（GitHub dreamzero0/dreamzero）及 Hugging Face 检查点；
 - **推理速度**：项目页报告每个动作块推理约 150 毫秒，可实现约 7Hz 的闭环控制。对于一个 14B 的视频扩散模型，这是相当激进的工程优化结果（当然，7Hz 仍低于 VLA 动作专家常见的 50Hz 级别，因此高频细节仍依赖底层控制器）。
 
 ### 4.4 关键结果
@@ -320,4 +324,4 @@ NVIDIA 的路线有一个一以贯之的主题：**"数据从哪里来"**。从�
 - [NVIDIA 博客：NVIDIA 与 Hugging Face 为 LeRobot 带来新模型](https://blogs.nvidia.com/blog/hugging-face-lerobot-models-frameworks-open-robotics/)
 - [DeepWiki：Isaac-GR00T 版本说明](https://deepwiki.com/NVIDIA/Isaac-GR00T)
 
-> **核验说明**：GR00T N1 架构与训练细节来自原论文；N1.6/N1.7 的结构变化来自官方 GitHub 仓库与 Hugging Face 模型卡（N1.6 发布时间各来源有出入，本文按 2025 下半年处理）；DreamZero 的母体模型、推理速度、视频迁移收益来自论文与项目页；"GR00T N2 新任务成功率为领先 VLA 两倍以上"为 NVIDIA 在 GTC 2026 的官方宣称，尚无独立验证。
+> **核验说明**：GR00T N1 架构与训练细节来自原论文；N1.6/N1.7 的结构变化来自官方 GitHub 仓库与 Hugging Face 模型卡（N1.6 发布时间各来源有出入，本文按 2025 下半年处理）；DreamZero 的母体模型、推理速度、视频迁移收益来自论文与项目页；"GR00T N2 新任务成功率为领先 VLA 两倍以上"为 NVIDIA 在 GTC 2026 的官方宣称，尚无独立验证。补充核验：DreamZero 的单一自回归 DiT（流匹配联合预测视频 latent 与动作块）、5 FPS 视频 / 30Hz（智元）与 15Hz（DROID）动作、约 1.6 秒分块、约 500 小时智元 G1 遥操作数据 + DROID、对比 π0.5-DROID 与 GR00T N1.6-DROID 来自 arXiv 论文与开源仓库。

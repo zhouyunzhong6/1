@@ -31,19 +31,30 @@
 
 ## 2. 代表作一：Being-H0（2025.07）——人类视频 VLA 预训练的起点
 
-> 发布：2025 年 7 月 21 日；GitHub BeingBeyond/Being-H。
+> 论文：*Being-H0: Vision-Language-Action Pretraining from Large-Scale Human Videos*（arXiv 2507.15597，2025.07；作者来自北京大学、中国人民大学等）；发布：2025 年 7 月 21 日；GitHub BeingBeyond/Being-H。
 
-### 2.1 思路：把人手运动"token 化"
+### 2.1 物理指令微调（Physical Instruction Tuning）
 
-Being-H0 的核心思想是**物理指令微调（Physical Instruction Tuning）**：
-1. 从大约 **1000 小时**人类第一视角视频中，用手部姿态估计提取**3D 手部运动**（手腕位姿 + 手指关节）；
-2. 把手部运动**离散化为"运动 token"**——让 VLM 可以像预测文字一样预测手部动作；
-3. 在"图像 + 语言指令 → 手部运动 token"的任务上预训练 VLM；
-4. 再把学到的手部运动知识**迁移到机器人灵巧手**上（通过运动重定向与少量机器人数据微调）。
+Being-H0 把 LLM/VLM 领域的"视觉指令微调"扩展到物理操作，形成**三阶段**训练范式：
+1. **在人类视频上预训练**：从大规模人类第一视角视频中学习"看到什么、听到什么指令、手该怎么动"；
+2. **物理空间对齐**：把人类视频中的手部运动与三维物理空间对齐（统一相机、尺度、坐标系等差异）；
+3. **面向机器人的后训练适配**：用少量机器人数据，把学到的手部运动知识迁移到机器人灵巧手上。
 
-### 2.2 意义
+### 2.2 部件级运动 token 化（Part-Level Motion Tokenization）
 
-Being-H0 是中国较早的"**以人手视频为主要预训练数据的灵巧操作 VLA**"之一，与 UCSD 的 HAT（第 20 章）、NVIDIA 的 EgoScale（GR00T N1.7）同期。它确立了智在无界"**以人为中心（human-centric）**"的研究主线。
+关键难题是：**如何让自回归语言模型"说出"手的动作？** Being-H0 把连续的手部运动（手腕位姿 + 各手指关节）**按部件量化为离散 token**，使自回归模型能够预测手部运动，同时保持**毫米级**精度——这与 PI 的 FAST、RDT2 的 RVQ 一样，都是在回答"动作如何 token 化"（参见技术专题第 2 节）。
+
+### 2.3 UniHand 数据集
+
+**UniHand** 是 Being-H0 构建的大规模人手数据集合，包含**超过 1.5 亿条**指令跟随样本，融合了**动作捕捉、VR 录制与纯 RGB 视频**三类来源（其中人类第一视角视频约 1000 小时量级）。
+
+### 2.4 架构
+
+主干采用 **InternLM3 或 Qwen2.5** 等语言模型，视觉、文本与手部运动 token 在**共享注意力**中统一建模。二手综述报告，与架构相近但没有经过物理指令微调的 InternVL3 相比，Being-H0 在手部运动生成与下游操作上有明显优势。
+
+### 2.5 意义
+
+Being-H0 是中国较早的"**以人手视频为主要预训练数据的灵巧操作 VLA**"之一，与 UCSD 的 HAT（第 20 章）、NVIDIA 的 EgoScale（GR00T N1.7）同期。它确立了智在无界"**以人为中心（human-centric）**"的研究主线，并为 H0.5 的"统一动作空间"打下了基础。
 
 ---
 
@@ -158,10 +169,10 @@ H0.7 被官方仓库定位为**旗舰 WAM（世界-动作模型）**，其关键
 
 ## 8. 延伸阅读与核验来源
 
-- Being-H0：[GitHub BeingBeyond/Being-H](https://github.com/BeingBeyond/Being-H)
+- Being-H0：[arXiv 2507.15597](https://arxiv.org/html/2507.15597v1)；[GitHub BeingBeyond/Being-H](https://github.com/BeingBeyond/Being-H)
 - Being-H0.5：[arXiv 2601.12993](https://arxiv.org/html/2601.12993v1)；[项目页](https://research.beingbeyond.com/being-h05)
 - Being-H0.7：[腾讯新闻：智在无界发布通用具身世界模型 Being-H0.7](https://news.qq.com/rain/a/20260414A01YCJ00)；[新浪财经](https://finance.sina.com.cn/stock/t/2026-04-14/doc-inhumshf9119828.shtml?froms=ggmp)；[China Research Collective](https://chinaresearchcollective.substack.com/p/beijings-beingbeyond-releases-the)
 - Being-H-Flash：[第一电动网](https://m.d1ev.com/news/shichang/301884)
 - [Hugging Face：BeingBeyond](https://huggingface.co/BeingBeyond)
 
-> **核验说明**：Being-H0 的发布日期与"约 1000 小时人类视频"来自官方仓库与报道；Being-H0.5 的 UniHand-2.0 规模（约 3.5 万小时，1.6 万 + 1.4 万）、三大技术支柱、LIBERO 98.9%/RoboCasa 53.9% 来自论文与二手摘要；FAST 的设计来自公开发布的摘要；Being-H0.7 的 20 万小时与"潜空间推理的隐式世界模型"来自官方发布与媒体；"横扫 6 大榜单""端侧首个"为公司/媒体口径；CoRL 2026、NeurIPS 2026 接收信息来自官方仓库，未独立核实。
+> **核验说明**：Being-H0 的三阶段物理指令微调、部件级运动 token 化、UniHand（1.5 亿+ 样本，动捕/VR/RGB 三源）与主干选择来自 arXiv 2507.15597，发布日期与"约 1000 小时人类视频"来自官方仓库与报道；Being-H0.5 的 UniHand-2.0 规模（约 3.5 万小时，1.6 万 + 1.4 万）、三大技术支柱、LIBERO 98.9%/RoboCasa 53.9% 来自论文与二手摘要；FAST 的设计来自公开发布的摘要；Being-H0.7 的 20 万小时与"潜空间推理的隐式世界模型"来自官方发布与媒体；"横扫 6 大榜单""端侧首个"为公司/媒体口径；CoRL 2026、NeurIPS 2026 接收信息来自官方仓库，未独立核实。

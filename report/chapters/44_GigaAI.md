@@ -30,14 +30,27 @@
 
 GigaWorld-0 被极佳称为"**全球首个验证'世界模型生成数据能够有效提升真实物理机器人（VLA）性能'的里程碑式工作**"（公司说法）。其开源代码在 GitHub 上获得超过 1500 星。
 
-### 2.2 数据引擎的思路（基于公开描述的归纳）
+### 2.2 两条分支：视频世界模型 + 3D 物理世界
 
-GigaWorld-0 不是一个"会画画"的视频模型，而是一个**为具身训练生产数据的引擎**，典型的生成方式包括：
-- **外观迁移**：保持机器人动作不变，改变场景外观（材质、光照、背景、物体纹理）——"一条真实轨迹变成上百条视觉多样的轨迹"；
-- **视角迁移**：从一个相机视角生成其他视角的画面；
-- **人类到机器人迁移**：把人类操作视频转换为机器人执行的视频；
-- **仿真到真实迁移**：把仿真渲染的画面转换为逼真画面（类似 NVIDIA Cosmos Transfer）；
-- 并结合 **3D/物理层面**的生成，保证几何与物理一致性。
+> 论文：*GigaWorld-0: World Models as Data Engine to Empower Embodied AI*（GigaWorld Team，arXiv 2511.19861，2025-11-25，v2 2025-11-30）；项目页 gigaworld0.github.io。
+
+GigaWorld-0 不是一个"会画画"的视频模型，而是一个**为 VLA 训练生产数据的统一世界模型框架**，由两条分支组成：
+
+**（1）GigaWorld-0-Video：大规模视频生成**
+- 基础模型 **GigaWorld-0-Video-Dreamer**：一个**混合专家（MoE）架构的"图像+文本 → 视频"生成模型**；
+- 在其上做三种后训练，得到三个"数据迁移"变体：
+  - **外观迁移**：保持机器人动作与轨迹不变，改变场景外观（材质、光照、背景、物体纹理）——"一条真实轨迹变成大量视觉多样的轨迹"；
+  - **视角迁移**：从一个相机视角生成其他视角的画面；
+  - **动作模仿（motion mimicry）**：例如把人类操作视频转换为机器人执行的视频。
+
+**（2）GigaWorld-0-3D：物理可执行的 3D 场景**
+- 用 **3D 生成模型**生成前景物体资产；
+- 用 **3D 高斯泼溅（3DGS）**重建场景；
+- 用**运动规划模块**计算机械臂**可执行**的动作——保证生成数据在几何与物理上一致，而不只是"看起来像"。
+
+**（3）GigaTrain：高效训练框架**——采用 **FP8 精度**与**稀疏注意力**降低显存与算力开销。
+
+**关键结论**（论文报告）：用 GigaWorld-0 生成的数据训练的 VLA（GigaBrain-0），在**训练中不使用真实世界交互**的条件下，提升了真机任务成功率与泛化能力。
 
 ### 2.3 意义
 
@@ -47,15 +60,25 @@ GigaWorld-0 与 NVIDIA Cosmos/DreamGen、智元 GE-Sim 属于同一方向，但�
 
 ## 3. 代表作二：GigaBrain-0（2025.10）——世界模型数据驱动的 VLA
 
-> 技术报告：*GigaBrain-0: A World Model-Powered Vision-Language-Action Model*（2025.10）；后续开源 GigaBrain-0 与 GigaBrain-0.1。
+> 技术报告：*GigaBrain-0: A World Model-Powered Vision-Language-Action Model*（arXiv 2510.19430，2025.10）；后续开源 GigaBrain-0 与 GigaBrain-0.1。
 
-### 3.1 核心思想
+### 3.1 核心思想与架构
 
-GigaBrain-0 是一个以**世界模型生成数据为重要训练来源**的 VLA，以降低对昂贵真机数据的依赖。其关键设计（据技术报告的公开描述）：
-1. **大规模世界模型生成数据**：利用 GigaWorld 的多种迁移方式（外观、视角、人到机器人、仿真到真实等）大幅扩充训练数据的多样性；
-2. **RGB-D 输入建模**：引入深度信息以增强三维空间理解（与蚂蚁 LingBot-Depth、智源 RoboBrain 2.5 的"3D 化"趋势一致）；
-3. **具身思维链（Embodied CoT）监督**：在训练中引入中间推理监督——例如子目标语言、2D 操作轨迹、离散动作 token 等——让模型"先想清楚再行动"；
-4. **轻量版本**：提供面向边缘设备（如 Jetson 级平台）的小型版本。
+GigaBrain-0 是一个以**世界模型生成数据为重要训练来源**的 VLA，以降低对昂贵真机数据的依赖，目标是在外观、物体摆放、相机视角变化下保持泛化。
+
+| 组件 | 设计 |
+|---|---|
+| 主干 | **混合 Transformer（MoT）**，以 **PaliGemma2** VLM 为基础 |
+| 动作生成 | **动作扩散 Transformer（DiT）**，以**流匹配**预测连续动作 |
+| 视觉 | **RGB-D 输入**：扩展 SigLIP 第一层卷积以接收深度通道；训练中**随机丢弃深度**，使模型在只有 RGB 时也能工作 |
+| 具身思维链 | 中间推理 token 包括：**2D 操作轨迹（10 个关键点）**、**子目标语言**、**离散动作 token** |
+| 数据 | 真机数据 + 大规模 GigaWorld 生成数据（外观/视角/动作迁移、3D 物理场景）|
+
+**为什么是 RGB-D + 具身思维链**：深度提供精确的三维几何（与蚂蚁 LingBot-Depth、智源 RoboBrain 2.5 的"3D 化"趋势一致）；2D 轨迹关键点让模型在输出动作前先"画出"手要走的路径——这是一种**空间化的思维链**，与 RoboBrain 的轨迹预测、DM0 的空间脚手架思路相通。
+
+### 3.1.1 GigaBrain-0-Small：面向端侧
+
+论文提供了轻量版 **GigaBrain-0-Small**，面向 **NVIDIA Jetson AGX Orin** 等边缘设备。据二手摘要，它在 Orin 上以约 **π0 参数量的 12.5%**、约 **1/5 的 FLOPs**、约 **1/9 的显存**与约 **1/10 的延迟**取得可比的成功率（以论文表格为准）。
 
 ### 3.2 结果
 
@@ -140,6 +163,7 @@ GigaWorld-Policy 被宣传为在主流"**世界-动作模型（WA）**"的推理
 - [腾讯新闻：GigaWorld-1 发布](https://news.qq.com/rain/a/20260330A05EMC00)
 - [搜狐：极佳视界完成 10 亿元 Pre-B 轮融资](https://m.sohu.com/a/992867241_100016644)；[投资界：华为押注的机器人公司再融 10 亿](https://news.pedaily.cn/202603/561389.shtml)；[新浪：A2 轮再融 2 亿](https://finance.sina.com.cn/cj/2025-12-08/doc-inhaamfi2464721.shtml?froms=ggmp)
 - [知乎："世界模型"新锐：极佳视界](https://zhuanlan.zhihu.com/p/1986353195270808358)
-- GigaBrain-0 技术报告（2025.10）；GigaWorld-0（2025.11，GitHub 开源）
+- GigaBrain-0：[arXiv 2510.19430](https://arxiv.org/html/2510.19430v3)
+- GigaWorld-0：[arXiv 2511.19861](https://arxiv.org/html/2511.19861)；[Hugging Face Papers](https://huggingface.co/papers/2511.19861)
 
-> **核验说明**：融资信息与"华为押注"来自媒体报道；GigaWorld-0"首个验证世界模型数据提升真机 VLA"、GigaBrain-0.1"超越 π0.5 排名第一"、GigaWorld-1"全球第一"、GigaWorld-Policy"全面超越"均为公司宣传口径；GigaBrain-0 的 RGB-D 与具身思维链设计、GigaWorld-0 的数据迁移方式为基于技术报告公开描述的归纳；RAMP 框架来自 GigaBrain-0.5M\* 论文的二手解读；本章未引用具体 arXiv 编号，以官方仓库与论文页面为准。
+> **核验说明**：融资信息与"华为押注"来自媒体报道；GigaWorld-0"首个验证世界模型数据提升真机 VLA"、GigaBrain-0.1"超越 π0.5 排名第一"、GigaWorld-1"全球第一"、GigaWorld-Policy"全面超越"均为公司宣传口径；GigaBrain-0 的 MoT（PaliGemma2）+ 流匹配 DiT、RGB-D（扩展 SigLIP）、具身思维链组成来自 arXiv 2510.19430 及其摘要，Small 版本的效率数字为二手摘要；GigaWorld-0 的 Video-Dreamer（MoE）、三种迁移、3D 分支（3DGS + 运动规划）、GigaTrain（FP8 + 稀疏注意力）来自 arXiv 2511.19861；RAMP 框架来自 GigaBrain-0.5M\* 论文的二手解读。

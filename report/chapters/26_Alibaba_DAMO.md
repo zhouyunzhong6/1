@@ -41,9 +41,14 @@
 - **动作模型（VLA）**：给定图像与指令，预测动作；
 - **世界模型**：给定图像与动作，预测下一帧图像。
 
-两者共享同一套图像/文本/动作 token 化与 Transformer 主干（基于统一的多模态生成模型），**相互促进**：世界模型迫使模型理解"动作的物理后果"，从而帮助动作预测；动作模型帮助世界模型理解"什么样的视觉变化对应什么样的动作"。
+两者共享同一套图像/文本/动作 token 化与 Transformer 主干——模型从 **Chameleon**（一个统一图像理解与生成的离散 token 模型）初始化，**相互促进**：世界模型迫使模型理解"动作的物理后果"，从而帮助动作预测；动作模型帮助世界模型理解"什么样的视觉变化对应什么样的动作"。
 
-**一个关键技术细节**：自回归生成**动作块**时，后面的动作会依赖前面已生成的动作，一旦前面出错，错误会传播。WorldVLA 提出一种**注意力掩码策略**：生成当前动作时，屏蔽之前生成的动作 token，只让它依赖视觉与语言输入——显著改善了动作块生成的质量。
+**一个关键技术细节**：自回归生成**动作块**时，后面的动作会依赖前面已生成的动作，一旦前面出错，错误会传播。WorldVLA 提出一种**动作注意力掩码**：每个动作 token **只关注文本与视觉输入，不关注之前生成的动作 token**——这既阻断了错误传播，也使动作块可以**并行生成**；世界模型部分仍保留标准因果掩码。
+
+**LIBERO 上的关键数字**（论文报告）：
+- 不加掩码时，常规自回归分块会使抓取成功率**下降 10%–50%**；加入动作掩码后**恢复 4%–23%**；
+- 统一模型相比**同主干的纯动作模型**抓取成功率高约 **4%**；相比**纯世界模型**，生成视频的 FVD（Fréchet 视频距离）降低约 **10%**——即两种能力确实相互促进；
+- 二手综述称其在 512×512 分辨率、无大规模机器人预训练的条件下，LIBERO 平均成功率约 81.8%（对比 OpenVLA 约 76.5%），未在论文原文中核实。
 
 **意义**：WorldVLA 是国内较早把"**世界模型 + VLA 统一**"做成开源模型的工作之一，比 2026 年的"世界动作模型"热潮早了半年以上。
 
@@ -51,12 +56,16 @@
 
 > 2025 年 8 月世界机器人大会开源；论文 *RynnVLA-001: Using Human Demonstrations to Improve Robot Manipulation*。
 
+> 论文：*RynnVLA-001: Using Human Demonstrations to Improve Robot Manipulation*（arXiv 2509.15212，2025.09）；模型为从 **Chameleon 文生图架构**扩展而来的自回归 Transformer。
+
 **三阶段训练**：
 1. **第一视角视频生成预训练**：在大规模人类第一视角操作视频上，训练一个"图像到视频"的生成模型——学习"手如何操作物体"的视觉动态；
 2. **以人为中心的轨迹感知建模**：在视频生成的基础上，让模型同时预测**人手关键点的未来轨迹**——把"视觉动态"与"动作轨迹"联系起来；
 3. **机器人动作微调**：迁移到机械臂上，预测机器人动作。
 
-**ActionVAE**：用一个变分自编码器把**动作块压缩为紧凑的潜在向量**，模型预测潜在向量而非逐步动作，使输出更平滑、更紧凑。
+**数据规模与清洗**：第一阶段在约 **1200 万条**第一视角操作视频上训练"图像到视频"模型（以初始帧与语言指令为条件预测未来帧）；视频用姿态估计筛选——保留手与手腕可见的帧、剔除出现人脸关键点的帧（保证"操作视角"并兼顾隐私）。
+
+**ActionVAE**：用变分自编码器把**动作块压缩为紧凑的潜在向量**，降低 VLA 输出空间的复杂度；**人类轨迹与机器人动作分别训练各自的 ActionVAE**，在 VLA 训练与推理时冻结。评测在自建的 SO100 机械臂环境中进行（因此不能与 LIBERO 成绩直接比较）。
 
 **意义**：RynnVLA-001 是"**人类视频 → 机器人**"路线的又一个开源实现，与港大 UniVLA、北大 Being-H0、UCSD HAT 等工作同期，体现了 2025 年中国学界与产业界对"人类数据"的集体押注。
 
@@ -187,4 +196,4 @@ RynnBrain 在预训练中重点学习对**空间、位置、事件、轨迹**的
 - RynnVLA-001 / RynnEC / RynnRCP：[IT之家报道](https://www.ithome.com/0/874/483.htm)；[CSDN：达摩院开源 RynnVLA-001、RynnEC、RynnRCP](https://damodev.csdn.net/68a6d13b4e4959284dabdf2f.html)
 - RynnBrain：[arXiv 2602.14979](https://arxiv.org/abs/2602.14979)；[Hugging Face Papers](https://huggingface.co/papers/2602.14979)；[GitHub alibaba-damo-academy/RynnBrain](https://hn.jakechampion.name/reader/https://github.com/alibaba-damo-academy/RynnBrain)；[IT之家：RynnBrain 发布](https://www.ithome.com/0/920/752.htm)；[国家科技创新信息：RynnBrain](https://www.ncsti.gov.cn/kjdt/yqdy/yqdt/202602/t20260214_238416.html)
 
-> **核验说明**：WorldVLA 的注意力掩码策略来自论文；RynnVLA-001 的三阶段训练与 ActionVAE 来自论文与官方介绍；RynnEC 的"11 个维度"与 RynnRCP 的两模块结构来自官方发布；RynnBrain 的模型家族（2B/8B/30B-A3B 及三个后训练模型）、Qwen3-VL 底座、RynnScale 约 2 倍效率、约 2000 万对数据、RynnBrain-Bench 21 项能力来自技术报告与仓库；"16 项评测 SOTA、超越 Gemini Robotics-ER 1.5 与 Cosmos Reason 2"为阿里官方口径；部分细分成绩为二手数据。
+> **核验说明**：WorldVLA 的注意力掩码策略来自论文；RynnVLA-001 的三阶段训练与 ActionVAE 来自论文与官方介绍；RynnEC 的"11 个维度"与 RynnRCP 的两模块结构来自官方发布；RynnBrain 的模型家族（2B/8B/30B-A3B 及三个后训练模型）、Qwen3-VL 底座、RynnScale 约 2 倍效率、约 2000 万对数据、RynnBrain-Bench 21 项能力来自技术报告与仓库；"16 项评测 SOTA、超越 Gemini Robotics-ER 1.5 与 Cosmos Reason 2"为阿里官方口径；部分细分成绩为二手数据。补充核验：WorldVLA 的 Chameleon 初始化、动作注意力掩码（并行生成动作块）、LIBERO 上 -10%~-50% / +4%~+23% / 抓取 +4% / FVD -10% 来自论文与二手综述（81.8% vs 76.5% 未在原文核实）；RynnVLA-001（arXiv 2509.15212）的约 1200 万条第一视角视频、姿态估计清洗、人/机分别训练的 ActionVAE、SO100 评测来自论文摘要。

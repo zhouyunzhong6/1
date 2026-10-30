@@ -73,11 +73,16 @@
 
 **定位**：一个"**源自视频生成的开源世界模拟器**"，面向具身智能、自动驾驶与游戏开发。
 
+**技术底座与训练**：
+- 代码库**基于阿里通义 Wan2.2**（约 14B 的图生视频扩散主干）构建——又一个"阿里底座被广泛采用"的例子（参见第 26 章）；
+- **多阶段训练**：以 Wan2.2 为起点预训练 → 中期训练 → 后训练为**因果自回归生成**——把"被动的视频合成"改造为"**可交互、因果一致的世界模拟**"；
+- **可扩展数据引擎**：覆盖数据获取、画像（profiling）与描述标注，支撑动作条件化训练。
+
 **能力**：
 - 从**一张真实世界图像或游戏截图**出发，生成**可交互的视频流**，无需针对特定场景训练；
 - 生成吞吐约 **16 FPS**，端到端交互延迟 **小于 1 秒**；
 - 可实现近 **10 分钟**连续稳定的生成（据报道）；
-- 提供**相机位姿条件化**与**动作条件化**版本，480P 与 720P 两种分辨率，以及一个 **Fast** 加速版；
+- 提供 **Base（Cam，相机位姿条件化）**、**Base（Act，动作条件化）** 与 **Fast** 加速版，各有 480P 与 720P 两种分辨率（二手资料称 Fast 版在 A100 级 GPU 上 480P 约 16 FPS、每帧约 62 毫秒）；
 - **Apache-2.0** 许可。
 
 **与 Genie 3 的对比**：Google DeepMind 的 Genie 3（2025.08）是同类"实时交互世界模型"的标杆（720p、24fps、数分钟一致性），但闭源。LingBot-World 以**开源**方式提供了类似能力，是中国开源世界模型的代表之一。
@@ -170,4 +175,4 @@ LingBot-Depth 是灵波在"具身进化周"中发布的**高精度空间感知�
 - LingBot-World：[arXiv 2601.20540](https://arxiv.org/html/2601.20540)；[Business Wire](https://www.businesswire.com/news/home/20260128459962/en/Robbyant-Open-Sources-LingBot-World-a-World-Model-for-Millisecond-Level-Real-Time-Interaction)；[Hugging Face：lingbot-world-fast](https://huggingface.co/robbyant/lingbot-world-fast)
 - LingBot-World 2.0：[IT Brief](https://itbrief.co.uk/story/robbyant-open-sources-lingbot-world-2-0-for-live-video)
 
-> **核验说明**：LingBot-VLA 1.0 的 2 万小时、9 种构型、GM-100（13.0%→15.7%/17.3%）与 RoboTwin 2.0（+9.92%）来自官方开源报道；2.0 的 6 万小时、17 家 20+ 构型、130 毫秒推理来自多家媒体一致报道；LingBot-World 1.0 的 16 FPS、<1 秒延迟、arXiv 编号与许可证来自技术报告与模型卡；2.0 的一小时/720p/60fps/MoBA 来自 IT Brief 报道；LingBot-Depth 公开技术细节有限；LingBot-VLA 的 VLM 底座与动作头未见公开报道，本章未作推测。
+> **核验说明**：LingBot-VLA 1.0 的 2 万小时、9 种构型、GM-100（13.0%→15.7%/17.3%）与 RoboTwin 2.0（+9.92%）来自官方开源报道；2.0 的 6 万小时、17 家 20+ 构型、130 毫秒推理来自多家媒体一致报道；LingBot-World 1.0 的 16 FPS、<1 秒延迟、arXiv 编号与许可证来自技术报告与模型卡；2.0 的一小时/720p/60fps/MoBA 来自 IT Brief 报道；LingBot-Depth 公开技术细节有限；LingBot-VLA 的 VLM 底座与动作头未见公开报道，本章未作推测。补充核验：LingBot-World 基于 Wan2.2 构建、多阶段训练（预训练→中期训练→因果自回归后训练）与 Cam/Act/Fast 版本来自 GitHub README、Hugging Face 模型卡与技术报告摘要；"A100 上 480P 约 16 FPS、每帧约 62 毫秒"为二手资料。

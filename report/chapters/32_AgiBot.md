@@ -92,10 +92,14 @@ GO-1（Genie Operator-1）提出了 **ViLLA（Vision-Language-Latent-Action）**
 | 组件 | 作用 | 技术要点 |
 |---|---|---|
 | **GE-Base** | 世界基础模型 | 大规模、**指令条件化的视频扩散 Transformer（DiT）**；在 AgiBot-World-Beta 约 **3000 小时**视频-语言配对数据（**100 万+** 真实操作片段）上训练；学习"在某个指令下，机器人与世界会如何演变" |
-| **GE-Act** | 动作模块（"世界动作模型"）| 在 GE-Base 上增加一个**轻量的并行动作分支**（报道称约 **1.6 亿参数**），把视觉潜在表征映射为结构化的动作轨迹 |
+| **GE-Act** | 动作模块（"世界动作模型"）| 在 GE-Base 上增加一个**轻量的并行流匹配动作分支**（约 **1.6 亿参数**；DiT 块深度与 GE-Base 相同但隐藏维度更小），把视觉潜在表征映射为结构化的动作轨迹；二手资料称可在普通 GPU 上约 200 毫秒内生成 54 步轨迹 |
 | **GE-Sim** | 神经模拟器 | 把 GE-Base 改造成**动作条件化的视频生成器**，用于**闭环策略评估**与**可控数据生成** |
 
-配套发布了 **EWMBench**（具身世界模型基准），从场景一致性、轨迹准确性、语义对齐等维度评估世界模型。
+GE-Base 以**自回归分块**的方式、以机器人视觉观察为条件生成视频。
+
+**跨本体迁移**：论文报告，GE-Act 仅用约 **1 小时**遥操作示范即可迁移到**双臂 Franka**、**松灵 Cobot Magic** 等其他机器人上。
+
+配套发布了 **EWMBench**（具身世界模型基准），从**视觉保真度、物理一致性、指令-动作对齐**等维度评估世界模型（代码与数据见 GitHub AgibotTech/EWMBench）。
 
 ### 3.2 闭环：策略 ↔ 世界模型
 
@@ -250,4 +254,4 @@ GO-1（Genie Operator-1）提出了 **ViLLA（Vision-Language-Latent-Action）**
 - [新浪科技：智元上半年收入近 20 亿元，发布 Worken](https://finance.sina.com.cn/tech/roll/2026-10-29/doc-iniwwifc5375759.shtml)；[澎湃新闻](https://www.thepaper.cn/newsDetail_forward_34358003)
 - [新浪财经：WITA-OMNI](https://finance.sina.com.cn/tob/2026-10-29/doc-iniwwaxa2926175.shtml)
 
-> **核验说明**：AgiBot World 的规模（100 万+ 轨迹、217 任务、5 领域）来自论文与报道（"约 3000 小时"来自 GE 论文对 AgiBot-World-Beta 的描述）；GO-1 的 ViLLA 架构（InternVL-2B、潜在规划器、动作专家）与 66%→78% 来自智元官方；GE 的三组件与 GE-Act 约 1.6 亿参数来自论文与新闻稿；GO-2 的 LIBERO 98.5%、Genie Sim 3.0 82.9%、CVPR 2026 来自官方发布，龙旗产线 99.5% 来自百科条目；GO-3 Preview 为 2026-10-29 发布，WRAM 架构、三榜单宣称、Nano 版 RoboDojo 61.90/56.42% 与年底开源计划来自当日多家媒体（官方口径，完整版成绩未公开）；"GE-2 获 World Arena 冠军"未见官方确认。
+> **核验说明**：AgiBot World 的规模（100 万+ 轨迹、217 任务、5 领域）来自论文与报道（"约 3000 小时"来自 GE 论文对 AgiBot-World-Beta 的描述）；GO-1 的 ViLLA 架构（InternVL-2B、潜在规划器、动作专家）与 66%→78% 来自智元官方；GE 的三组件与 GE-Act 约 1.6 亿参数来自论文与新闻稿；GO-2 的 LIBERO 98.5%、Genie Sim 3.0 82.9%、CVPR 2026 来自官方发布，龙旗产线 99.5% 来自百科条目；GO-3 Preview 为 2026-10-29 发布，WRAM 架构、三榜单宣称、Nano 版 RoboDojo 61.90/56.42% 与年底开源计划来自当日多家媒体（官方口径，完整版成绩未公开）；"GE-2 获 World Arena 冠军"未见官方确认。补充核验：GE-Base 的自回归分块生成、GE-Act 的并行流匹配分支（同深度、更小隐藏维度）、约 1 小时数据迁移到双臂 Franka 与松灵 Cobot Magic、EWMBench 的三个评估维度来自论文；"约 200 毫秒生成 54 步轨迹"为二手资料。
