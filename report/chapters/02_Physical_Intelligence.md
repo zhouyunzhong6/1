@@ -15,7 +15,7 @@
 | 开源 | openpi（π0、π0-FAST、π0.5 权重与训练代码，JAX + PyTorch）|
 | 代表模型 | π0（2024.10）、π0-FAST（2025.01）、π0.5（2025.04）、KI（2025.05）、RTC（2025.06）、π0.6 / π*0.6（2025.11）、MEM（2026.03）、**π0.7（2026.04）** |
 | 本章三篇代表作 | ① π0 ② π0.5 ③ π0.7（含其前置技术 π*0.6/RECAP 与 MEM） |
-| 身位 | 学术影响力与开源影响力全球第一；模型能力与 DeepMind 并列第一梯队；商业化最弱环节（收入极少，2026 年 10 月才有报道称推出等候名单制 API） |
+| 身位 | 学术影响力与开源影响力全球第一；模型能力与 DeepMind 并列第一梯队；商业化最弱环节（收入极少；2026 年 10 月 13 日推出申请制 Pi API 测试版，提供托管微调与推理） |
 
 ---
 
@@ -299,7 +299,9 @@ PI 的方法论有一个鲜明特征：**每一步都在解决上一代模型在
 
 **与中国追赶者的对比**：π0/π0.5 是中国大量 VLA 公司的直接对标物。2026 年 1 月千寻 Spirit v1.5 在 RoboChallenge 上超过 π0.5，说明在"开源上一代"层面，中国团队已经追平；但 π0.7（未开源）所代表的可引导性、组合泛化与 RL 后训练体系，仍是领先的。
 
-**身位**：模型能力全球第一梯队（与 DeepMind、Generalist 并列），学术影响力与开源影响力第一；商业化最慢——截至 2026 年中，公开报道普遍认为其收入极少；2026 年 10 月有单一来源称其推出了等候名单制的 Pi API（允许客户无需自建 ML 栈即可微调基础模型），尚待官方确认。
+**身位**：模型能力全球第一梯队（与 DeepMind、Generalist 并列），学术影响力与开源影响力第一；商业化最慢——截至 2026 年中，公开报道普遍认为其收入极少。
+
+**2026 年 10 月 13 日：Pi API Beta**。多家媒体报道，PI 开放了 **Pi API 测试版**：开发者可以**上传自己的机器人数据、在 PI 托管的算力上微调 Pi 模型，并通过托管推理网关把得到的模型部署到自己的机器人上**；访问需申请、分批开通，尚无公开价目表。关于开放了哪些模型，报道说法不一（有报道称包括 π0、π0.5 等；另有分析指出此次未发布新模型）。这是 PI 从"研究 + 开源"走向"**模型即服务**"的标志性一步，也印证了本章对其"平台化"路径的判断。
 
 ---
 
@@ -335,5 +337,6 @@ PI 的方法论有一个鲜明特征：**每一步都在解决上一代模型在
 - [Emergent Mind：π0.7 摘要](https://www.emergentmind.com/papers/2604.15483)
 - [Implicator：PI 接近 10 亿美元融资、估值翻倍](https://www.implicator.ai/physical-intelligence-nears-1-billion-round-doubling-valuation-in-four-months.md)
 - [physicalailab：PI 模型、openpi 与 Pi API（2026.10）](https://physicalailab.io/en/physical-intelligence-pi-models-openpi-api/)
+- [Unite.AI：Physical Intelligence 开放 Pi API 测试版](https://unite.ai/physical-intelligence-opens-pi-api-beta-for-robot-foundation-models)；[DoNews：Pi API 走向托管服务](https://www.donews.com/news/detail/1/6742327.html)
 
 > **核验说明**：π0/π0.5/FAST/KI/π*0.6 的技术细节来自原论文与官方博客；π0.7 的参数拆分（4B + 视频编码器 + 860M）与输入规格来自论文摘要及多篇一致的二手解读；"子目标世界模型约 14B"仅见于二手资料；2026 年融资与 API 信息各方说法不一，本文已标注。

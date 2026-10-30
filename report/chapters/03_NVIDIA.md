@@ -11,7 +11,7 @@
 | 机构 | NVIDIA（Isaac 机器人平台 + GEAR 实验室 + Cosmos 团队） |
 | 核心人物 | Jensen Huang（战略推动者）；GEAR（Generalist Embodied Agent Research）实验室由 Jim Fan 与 Yuke Zhu 共同领导；Deepu Talla（机器人与边缘计算副总裁） |
 | 大脑模型谱系 | GR00T N1（2025.03）→ N1.5（2025.05）→ N1.6（2025 下半年）→ N1.7（2026，商用授权）→ **GR00T N2（基于 DreamZero，计划 2026 年底）** |
-| 世界模型 | Cosmos WFM（2025.01）→ Cosmos Predict / Transfer / Reason 系列 → Cosmos Reason 2 → Cosmos 3（规划中） |
+| 世界模型 | Cosmos WFM（2025.01）→ Cosmos Predict / Transfer / Reason 系列 → Cosmos Reason 2 → Cosmos 3（GTC 2026 宣布，LeRobot 集成规划中） |
 | 全身控制 | HOVER（2024，多模式统一全身控制器）、**SONIC**（2025.11，运动追踪规模化的人形行为基础模型） |
 | 仿真与数据 | Isaac Sim、Isaac Lab、Newton 物理引擎（与 DeepMind、迪士尼合作）、GR00T-Mimic / DexMimicGen、GR00T-Dreams / DreamGen |
 | 端侧算力 | Jetson AGX Thor（Blackwell 架构，面向人形机器人的车载计算平台） |
@@ -284,7 +284,7 @@ NVIDIA 的路线有一个一以贯之的主题：**"数据从哪里来"**。从�
 | 商业逻辑 | 卖芯片、卖算力、卖平台 | 卖模型/API | 卖 API/平台授权 |
 
 **身位判断**：
-- **生态位**：NVIDIA 是唯一一家在"训练-仿真-推理"三个环节都占据主导的公司，GR00T 的真正竞争力在于它与 Isaac/Cosmos/Jetson 的整合，以及 NVIDIA 作为"中立供应商"对所有本体厂商的吸引力；
+- **生态位**：NVIDIA 是唯一一家在"训练-仿真-推理"三个环节都占据主导的公司，GR00T 的真正竞争力在于它与 Isaac/Cosmos/Jetson 的整合，以及 NVIDIA 作为"中立供应商"对所有本体厂商的吸引力（例如据报道 LG 于 2026 年 8 月宣布基于 Isaac GR00T 技术栈开发双足人形，计划 2027 年一季度公开亮相）；
 - **模型能力**：GR00T N1 系列在纯模型能力上略逊于 π0.5/Gemini Robotics，但 DreamZero 在"物理动作泛化"这一维度上可能实现反超——这取决于 GR00T N2 的实际表现；
 - **影响力**：Cosmos + GR00T 让"世界模型 + 合成数据"成为行业热词，在中国尤为明显。
 

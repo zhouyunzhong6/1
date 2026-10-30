@@ -206,6 +206,7 @@ AI5 是特斯拉自研的下一代推理芯片，用于车辆与 Optimus。据 2
 - [老虎证券：特斯拉发布"世界模拟器"，Optimus 共享同一大脑](https://www.itiger.com/news/1146546403)
 - [Not a Tesla App：Q3 2026 财报电话会回顾](https://www.notateslaapp.com/news/4867/tesla-q3-2026-earnings-call-recap-everything-you-need-to-know)；[Optimus 正式开始生产](https://www.notateslaapp.com/news/4866/tesla-officially-begins-optimus-robot-production)
 - [The Motley Fool：Tesla Q3 2026 电话会文字记录](https://www.fool.com/earnings/call-transcripts/2026/10/22/tesla-tsla-q3-2026-earnings-call-transcript/)
+- [ABC7：特斯拉在弗里蒙特开始生产 Optimus（2026-10-23，马斯克称为首批"生产级"机器人，部分部件仍需调整测试）](https://abc7.com/post/tesla-begins-production-optimus-humanoid-robot/19971232/)
 - [Not a Tesla App：Optimus 获得类人手](https://www.notateslaapp.com/news/3855/tesla-optimus-gains-human-like-hands-as-gen-3-reveal-nears)；[Teslamagz：22 自由度手专利](https://teslamagz.com/news/tesla-files-patent-for-optimus-v3-hand-with-22-degrees-of-freedom/amp/)
 - [Wikipedia：Optimus (robot)](https://en.wikipedia.org/wiki/Optimus_(robot))
 
