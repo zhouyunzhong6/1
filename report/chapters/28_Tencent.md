@@ -69,8 +69,14 @@ Tairos 让腾讯在具身领域有了一个**商业化的平台载体**，并通
 
 - **定位**：面向真实世界智能体的**具身基础视觉语言模型**家族；
 - **两档规模**：
-  - **约 2B 激活参数**的高效版本，面向**端侧部署**；
-  - **约 32B 激活参数**的版本，面向**复杂推理**；
+  - **MoT-2B**：激活约 2B、总参数约 4B 的高效版本，面向**端侧部署**（权重已开源）；
+  - **MoE-A32B**：激活约 32B、总参数约 4070 亿的大模型，面向**复杂推理**；
+- **架构要点**：
+  - **混合 Transformer（MoT）**：为不同模态提供专门的计算路径；
+  - **潜在 token（latent tokens）**：增强感知表征；
+  - 视觉编码器为原生分辨率的 **HY-ViT 2.0**（为端侧优化）；
+- **训练**：迭代式、**自我演化**的推理后训练范式 + **在策略蒸馏（on-policy distillation）**——把大模型的能力迁移给 2B 小模型；
+- **评测（腾讯自报）**：在 **22 个基准**上，A32B 平均 **67.0%**，超过 Gemini 3.0 Pro（63.6%）；MoT-2B 在其中 16 个基准上优于同尺寸最优模型（例如 CV-Bench 89.2，对比 Qwen3-VL-2B 的 80.0）；
 - 作为 Tairos 的感知与推理底座，提供场景理解、空间推理、任务规划等能力。
 
 ### 3.2 HyVLA-0.5（2026.06）
@@ -190,4 +196,4 @@ RxBrain 基于 **5 万小时以上**高质量具身数据训练。截至发布�
 - HyVLA-0.5：[BestHub](https://www.besthub.dev/articles/hyvla-0-5-sub-millimeter-umi-data-and-real-robot-reinforcement-eliminate-heavy-tele-operation-ce3370d37ae2)（单一二手来源）
 - [KrASIA：京东与腾讯想为机器人提供动力而非制造机器人](https://amp.kr-asia.com/jd-and-tencent-want-to-power-robots-not-build-them-at-least-for-now)
 
-> **核验说明**：Tairos 的发布时间与构成来自官方报道；HY-Embodied-0.5 的两档规模来自 arXiv 与 Hugging Face；HyVLA-0.5 仅见于单一二手来源；RxBrain 的能力描述、5 万小时以上数据、开源地址来自 GitCode/新闻报道；WAIC 2026 三件套的命名与 Apache 2.0 许可主要来自社区 wiki，未见完整官方新闻稿核实。
+> **核验说明**：Tairos 的发布时间与构成来自官方报道；HY-Embodied-0.5 的两档规模来自 arXiv 与 Hugging Face；HyVLA-0.5 仅见于单一二手来源；RxBrain 的能力描述、5 万小时以上数据、开源地址来自 GitCode/新闻报道；WAIC 2026 三件套的命名与 Apache 2.0 许可主要来自社区 wiki，未见完整官方新闻稿核实。补充核验：HY-Embodied-0.5 的 MoT-2B（2B/4B）与 MoE-A32B（32B/407B）、HY-ViT 2.0、潜在 token、自我演化后训练与在策略蒸馏、22 基准成绩来自 arXiv 2604.07430 与 Hugging Face 模型卡（腾讯自报）。
